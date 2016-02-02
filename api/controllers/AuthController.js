@@ -24,13 +24,39 @@ module.exports = {
                     user: user
                 });
             }
-            req.logIn(user, function(err) {
-                if (err) res.send(err);
-                return res.send({
-                    message: info.message,
-                    user: user
-                });
-            });
+            /** Content not generated BEGIN */
+            var http = require('http')
+              , methods = ['login', 'logIn', 'logout', 'logOut', 'isAuthenticated', 'isUnauthenticated'];
+            /** Content not generated END */
+
+            if (req.isSocket){
+              // Initialize Passport
+              passport.initialize()(req, res, function () {
+                // Use the built-in sessions
+                passport.session()(req, res, function () {
+                      for (var i = 0; i < methods.length; i++) {
+                        req[methods[i]] = http.IncomingMessage.prototype[methods[i]].bind(req);
+                      }
+                    req.logIn(user, function(err) {
+                      if (err) res.send(err);
+                      return res.send({
+                          message: info.message,
+                          user: user
+                      });
+                  });
+                })
+              })
+            }
+            else{
+                  req.logIn(user, function(err) {
+                      if (err) res.send(err);
+                      return res.send({
+                          message: info.message,
+                          user: user
+                      });
+                  });
+            }
+
 
         })(req, res);
     },
