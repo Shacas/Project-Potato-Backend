@@ -5,16 +5,25 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-// 规格
 // 进货价
-// 条形码（ID）
-// 用户：代号？产品：编码
 // 置顶，推荐？排列：牌子
-// 订单编号... 
+// 订单编号...
 
 module.exports = {
 
   attributes: {
+    // Product barcode 条形码
+    barcode: {
+      type: 'string',
+      unique: true
+    },
+
+    // Product number 产品编码
+    inventoryNumber: {
+      type: 'string',
+      unique: true
+    },
+
     name: {
       type: 'string',
       required: true
@@ -29,6 +38,11 @@ module.exports = {
       required: true
     },
 
+    unit: {
+      type: 'string',
+      required: true
+    },
+
     image: {
       type: 'integer'
     },
@@ -36,7 +50,13 @@ module.exports = {
     categories: {
       collection: 'Category',
       via: 'products'
+    },
+
+    orders: {
+      collection: 'Order',
+      via: 'products'
     }
+
 
   }
 };

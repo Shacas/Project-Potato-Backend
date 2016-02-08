@@ -10,6 +10,12 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
   attributes: {
+    // User number
+    userID: {
+      type: 'string',
+      unique: true
+    },
+
     // Username
     username: {
       type: 'string',
@@ -87,4 +93,3 @@ module.exports = {
 
 
 };
-
