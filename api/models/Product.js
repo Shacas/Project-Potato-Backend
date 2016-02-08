@@ -5,6 +5,13 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+// 规格
+// 进货价
+// 条形码（ID）
+// 用户：代号？产品：编码
+// 置顶，推荐？排列：牌子
+// 订单编号... 
+
 module.exports = {
 
   attributes: {
@@ -33,4 +40,3 @@ module.exports = {
 
   }
 };
-
