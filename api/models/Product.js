@@ -5,10 +5,6 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-// 进货价
-// 置顶，推荐？排列：牌子
-// 订单编号...
-
 module.exports = {
 
   attributes: {
@@ -55,8 +51,32 @@ module.exports = {
     orders: {
       collection: 'Order',
       via: 'products'
+    },
+
+    provider: {
+      model: 'Provider'
     }
 
 
+  },
+
+  afterCreate: function(product, cb) {
+    Provider.create({
+      product: product.id,
+    })
+    .exec(function(err, provider) {
+      if (err){
+        cb();
+      }
+
+      Product.update(product.id, {provider: provider.id}).exec(function(err, user) {
+        if (err){
+          cb();
+        }else{
+          cb();
+        }
+      });
+
+    });
   }
 };

@@ -11,10 +11,10 @@ module.exports = {
 
   attributes: {
     // User number
-    userID: {
-      type: 'string',
-      unique: true
-    },
+    // userID: {
+    //   type: 'string',
+    //   unique: true
+    // },
 
     // Username
     username: {
@@ -45,7 +45,7 @@ module.exports = {
     lastLoggedIn: {
       type: 'date',
       required: true,
-      defaultsTo: new Date(0)
+      defaultsTo: new Date()
     },
 
     toJSON: function() {
