@@ -21,12 +21,16 @@ passport.use(new LocalStrategy({
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect Username.' });
+        return done(null, false, {
+          code: 404,
+          message: 'Incorrect Username.'
+        });
       }
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res)
             return done(null, false, {
+              code: 404,
               message: 'Invalid Password'
             });
           var returnUser = {
@@ -35,6 +39,7 @@ passport.use(new LocalStrategy({
             id: user.id
           };
           return done(null, returnUser, {
+            code: 200,
             message: 'Logged In Successfully'
           });
         });

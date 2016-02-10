@@ -21,6 +21,7 @@ module.exports = {
             if ((err) || (!user)) {
                 return res.send({
                     message: info.message,
+                    token: jwToken.issue({id : user.id }),
                     user: user
                 });
             }
@@ -41,6 +42,7 @@ module.exports = {
                       if (err) res.send(err);
                       return res.send({
                           message: info.message,
+                          token: jwToken.issue({id : user.id }),
                           user: user
                       });
                   });
@@ -52,6 +54,7 @@ module.exports = {
                       if (err) res.send(err);
                       return res.send({
                           message: info.message,
+                          token: jwToken.issue({id : user.id }),
                           user: user
                       });
                   });
