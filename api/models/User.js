@@ -37,6 +37,12 @@ module.exports = {
       required: true
     },
 
+    role: {
+      type: 'string',
+      required: true,
+      defaultsTo: 'user'
+    },
+
     userInfo: {
       model: 'Profile'
     },
