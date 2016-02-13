@@ -5,6 +5,8 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var uuid = require('uuid');
+
 module.exports = {
 
   attributes: {
@@ -19,7 +21,12 @@ module.exports = {
 
     products: {
       collection: 'Product',
-      via: 'orders'
+      via: 'orders',
+      dominant: true
+    },
+
+    quantity: {
+      type: 'array'
     },
 
     user: {
